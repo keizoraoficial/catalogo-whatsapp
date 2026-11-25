@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo WhatsApp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: tierna, elegante, con aire; una vitrina de pastelería fina.
+   IDEA: la página se comporta como la vitrina y la caja de regalo de la tienda.
+   PICTURE: una torta de dos pisos en su base, con luz cálida y brillo, ilustrada a mano.
+   COLOUR and TYPE: rosa fresa como campo, chocolate como tinta, frambuesa como acento; DM Serif Display + Nunito Sans.
+   LAYOUT: portada a todo ancho con la torta grande, filtros, vitrina en grilla, carrito lateral. */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#170b0f);--field:light-dark(#fbe4e9,#2a1218);--field2:light-dark(#fff1f4,#21101a);
+--ink:light-dark(#3a1d14,#fbeef1);--soft:light-dark(#7a5148,#d9b9bf);--line:light-dark(#f1cfd7,#3f2229);
+--acc:light-dark(#c8264f,#ff6b8b);--choc:#4a2418;--card:light-dark(#ffffff,#211015)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Nunito Sans",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;line-height:1.05;text-wrap:balance;margin:0}
+button,input,select,textarea{font:inherit;font-size:16px;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:16px;padding:12px max(5vw,16px);flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-family:"DM Serif Display",serif;font-size:24px;text-decoration:none;color:var(--ink)}
+.brand-mark{display:inline-grid;place-items:center;flex:none;width:34px;height:34px;border-radius:50%;overflow:hidden;background:var(--choc);color:#fff;font-size:15px;font-weight:800}
+.brand-mark img{width:100%;height:100%;object-fit:contain}
+.hero .brand-mark{width:64px;height:64px;font-size:24px;margin-bottom:12px}
+nav .links{display:flex;gap:18px;margin-left:auto;flex-wrap:wrap}
+nav .links a{color:var(--soft);text-decoration:none;font-weight:700}
+nav .links a:hover{color:var(--acc)}
+.cartbtn{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:0;background:var(--choc);color:#fff;font-weight:800}
+.cartbtn b{background:var(--acc);border-radius:999px;min-width:24px;height:24px;display:grid;place-items:center;font-size:13px;padding:0 6px}
+/* hero */
+.hero{background:var(--field);overflow:hidden;position:relative}.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}.hero.photo .bg{display:block}.hero.photo::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(25,8,12,.82) 0%,rgba(25,8,12,.55) 45%,rgba(25,8,12,.05) 100%);z-index:1}.hero .wrap{position:relative;z-index:2}.hero.photo{min-height:min(88vh,760px);display:flex;align-items:center}.hero.photo .wrap{width:100%}.hero.photo h1,.hero.photo .facts strong{color:#fff}.hero.photo h1 i{color:#ffb3c4}.hero.photo p,.hero.photo .facts div{color:#f3dfe3}.hero.photo .cta.ghost{color:#fff;border-color:#fff}.hero.photo .heroart{visibility:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,4vw,56px);align-items:center}
+.hero h1{font-size:clamp(40px,6vw,64px)}
+.hero h1 i{font-style:italic;color:var(--acc)}
+.hero p{font-size:17px;color:var(--soft);max-width:34ch;margin:16px 0 26px}
+.cta{display:inline-flex;align-items:center;min-height:48px;padding:0 26px;border-radius:999px;background:var(--acc);color:#fff;border:0;font-weight:800;text-decoration:none}
+.cta.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink);margin-left:10px}
+.facts{display:flex;gap:26px;margin-top:30px;flex-wrap:wrap}
+.facts div{font-size:14px;color:var(--soft)}.facts strong{display:block;font-size:20px;color:var(--ink)}
+.heroart{position:relative;aspect-ratio:1.1}
+.heroart svg{position:absolute;inset:0;width:100%;height:100%}
+.floaty{animation:fl 6s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-8px)}}
+@media(prefers-reduced-motion:reduce){.floaty{animation:none}}
+/* catálogo */
+.head{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.head h2{font-size:clamp(32px,4vw,44px)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:700}
+.chip[aria-pressed=true]{background:var(--choc);border-color:var(--choc);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(120,30,50,.45)}
+.pic{aspect-ratio:5/4;background:var(--field2);display:grid;place-items:center;position:relative}
+.pic svg{width:86%;height:86%}.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.pic img.ph{position:absolute;inset:0;transition:transform .6s}.card:hover .pic img.ph{transform:scale(1.05)}
+.tag{position:absolute;top:12px;left:12px;background:var(--card);color:var(--soft);font-size:13px;font-weight:700;padding:4px 10px;border-radius:999px}
+.out .pic{filter:grayscale(1);opacity:.6}.out .tag{background:var(--choc);color:#fff}
+.body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.body h3{font-size:22px}
+.body p{margin:0;color:var(--soft);font-size:15px;flex:1}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.price{font-weight:800;font-size:19px;white-space:nowrap}
+.row select{flex:1;min-height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);padding:0 10px}
+.add{min-height:44px;padding:0 16px;border-radius:12px;border:0;background:var(--acc);color:#fff;font-weight:800}
+.add:disabled{background:var(--line);color:var(--soft);cursor:not-allowed}
+/* cómo pedir */
+.steps{background:var(--field);display:grid}
+.steps .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.step h3{font-size:24px;margin:10px 0 6px}.step p{margin:0;color:var(--soft)}
+.step svg{width:56px;height:56px}
+footer{background:var(--choc);color:#f6dfe4}
+footer .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px}
+footer h3{font-size:22px;color:#fff;margin-bottom:6px}footer p{margin:0;font-size:15px}
+footer small{display:block;margin-top:24px;opacity:.75;font-size:13px}
+footer a{color:inherit}
+.owner{display:inline-block;margin-top:10px;font-size:14px}
+/* paneles */
+.scrim{position:fixed;inset:0;background:rgba(30,10,15,.45);z-index:40;display:none}
+.scrim.on{display:block}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(440px,100%);background:var(--bg);z-index:50;transform:translateX(100%);transition:transform .3s,visibility .3s;visibility:hidden;display:flex;flex-direction:column;box-shadow:-20px 0 50px -30px rgba(0,0,0,.5)}
+.drawer.on{transform:none;visibility:visible}
+.dh{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line)}
+.dh h2{font-size:28px}
+.x{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);font-size:20px}
+.db{padding:18px 20px;overflow:auto;flex:1;display:flex;flex-direction:column;gap:14px}
+.item{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:center}
+.item .mini{position:relative;width:56px;height:56px;border-radius:12px;background:var(--field2);display:grid;place-items:center;overflow:hidden}
+.item .mini svg{width:90%;height:90%}.item .mini img{width:100%;height:100%;object-fit:cover}
+.item small{color:var(--soft);display:block}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--card);font-weight:800}
+label{font-weight:700;font-size:14px;display:flex;flex-direction:column;gap:6px}
+input,select,textarea{min-height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);padding:8px 12px}
+textarea{min-height:70px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg{display:flex;gap:8px}.seg button{flex:1;min-height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font-weight:700}
+.seg button[aria-pressed=true]{border-color:var(--acc);color:var(--acc);background:var(--field2)}
+.df{padding:16px 20px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:18px}
+.sub{display:flex;justify-content:space-between;color:var(--soft);font-size:15px}
+.wa{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;border-radius:14px;background:#1f9d55;color:#fff;font-weight:800;text-decoration:none}
+.wa[aria-disabled=true]{background:var(--line);color:var(--soft);pointer-events:none}
+.empty{text-align:center;color:var(--soft);padding:30px 0}
+.hint{font-size:13px;color:var(--soft);margin:0}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:var(--choc);color:#fff;padding:12px 20px;border-radius:999px;font-weight:700;z-index:60;transition:transform .3s}
+.toast.on{transform:translateX(-50%)}
+@media(max-width:860px){.hero.photo .heroart{display:none}.hero .wrap{grid-template-columns:1fr}.heroart{max-width:520px;width:100%;margin:0 auto}nav .links{display:none}}
+@media(max-width:600px){.hero.photo::before{background:linear-gradient(180deg,rgba(25,8,12,.85) 0%,rgba(25,8,12,.6) 60%,rgba(25,8,12,.35) 100%)}.two{grid-template-columns:1fr}.cta.ghost{margin:10px 0 0}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="#inicio"><span class="brand-mark" id="navLogo" aria-hidden="true"></span><span id="bizName">Catálogo</span></a>
+  <div class="links"><a href="#catalogo">Catálogo</a><a href="#como">Cómo pedir</a><a href="#contacto">Contacto</a></div>
+  <button class="cartbtn" id="openCart" aria-label="Abrir pedido">Tu pedido <b id="count">0</b></button>
+</div></nav>
+
+<header class="hero band" id="inicio"><img class="bg" id="cover" alt=""><div class="wrap">
+  <div>
+    <span class="brand-mark" id="heroLogo" aria-hidden="true"></span>
+    <h1 id="heroTitle">Catálogo</h1>
+    <p id="slogan"></p>
+    <a class="cta" href="#catalogo">Ver catálogo</a><a class="cta ghost" href="#como">Cómo pedir</a>
+    <div class="facts"><div id="heroPayBlock" hidden><strong>Pago</strong><span id="heroPay"></span></div></div>
+  </div>
+  <div class="heroart" id="heroArt"><svg viewBox="0 0 520 470" role="img" aria-label="Torta de dos pisos con fresas">
+    <defs>
+      <radialGradient id="glow" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+      <linearGradient id="sponge" x1="0" x2="1"><stop offset="0" stop-color="#7a3a26"/><stop offset=".55" stop-color="#5c2a1b"/><stop offset="1" stop-color="#3e1b11"/></linearGradient>
+      <linearGradient id="icing" x1="0" x2="1"><stop offset="0" stop-color="#ffd6df"/><stop offset=".6" stop-color="#f7b6c4"/><stop offset="1" stop-color="#e895a8"/></linearGradient>
+      <linearGradient id="stand" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e9dfe1"/></linearGradient>
+<g id="berry"><path d="M0 -16c10 0 16 8 14 18c-2 9-8 16-14 18c-6-2-12-9-14-18c-2-10 4-18 14-18z" fill="#d6284e"/><path d="M-8 -16l8 6l8-6l-3 -6l-5 4l-5 -4z" fill="#3c8a4e"/><circle cx="-4" cy="-2" r="1.4" fill="#ffd"/><circle cx="4" cy="4" r="1.4" fill="#ffd"/><circle cx="-2" cy="9" r="1.4" fill="#ffd"/><path d="M-9 -8q2 -4 6 -5" stroke="#fff" stroke-width="3" opacity=".5" fill="none" stroke-linecap="round"/></g>
+    </defs>
+    <circle cx="260" cy="220" r="220" fill="url(#glow)"/>
+    <g class="floaty">
+      <ellipse cx="260" cy="440" rx="190" ry="18" fill="#3a1d14" opacity=".14"/>
+      <path d="M232 440h56l-10-50h-36z" fill="url(#stand)"/>
+      <ellipse cx="260" cy="388" rx="190" ry="26" fill="url(#stand)"/>
+      <ellipse cx="260" cy="382" rx="190" ry="22" fill="#fff"/>
+      <rect x="110" y="270" width="300" height="112" rx="16" fill="url(#sponge)"/>
+      <rect x="110" y="318" width="300" height="12" fill="#fbe4e9" opacity=".85"/>
+      <path d="M110 286q0-26 26-26h248q26 0 26 26v14q-10 18-20 2q-10 26-24 4q-10 22-22 0q-12 30-26 2q-10 20-22 0q-12 28-26 2q-12 22-24 0q-10 26-24 2q-10 18-22 0q-10 20-20-2q-10 22-22 2q-10 18-24 0q-10 20-24-4z" fill="url(#icing)"/>
+      <rect x="160" y="180" width="200" height="92" rx="14" fill="url(#sponge)"/>
+      <rect x="160" y="220" width="200" height="10" fill="#fbe4e9" opacity=".85"/>
+      <path d="M160 194q0-22 22-22h156q22 0 22 22v12q-8 16-16 2q-8 22-20 2q-8 18-18 0q-10 24-20 2q-8 16-18 0q-10 22-20 2q-8 16-18 0q-8 18-16-2q-8 18-18 2q-8 16-18 0q-8 18-18-2z" fill="url(#icing)"/>
+      <rect x="346" y="180" width="14" height="92" rx="7" fill="#000" opacity=".12"/><rect x="392" y="270" width="18" height="112" rx="8" fill="#000" opacity=".12"/>
+
+      <use href="#berry" x="215" y="160"/><use href="#berry" x="262" y="150"/><use href="#berry" x="308" y="160"/>
+      <use href="#berry" x="150" y="252" transform="rotate(-8 150 252)"/><use href="#berry" x="370" y="252" transform="rotate(8 370 252)"/>
+      <circle cx="262" cy="118" r="11" fill="#fff"/><path d="M262 107q6-22 20-30" stroke="#3c8a4e" stroke-width="3" fill="none"/>
+      <g fill="#fff" opacity=".9"><circle cx="120" cy="120" r="4"/><circle cx="420" cy="140" r="3"/><circle cx="400" cy="70" r="5"/><circle cx="100" cy="200" r="3"/></g>
+    </g>
+  </svg></div>
+</div></header>
+
+<main>
+<section class="band" id="catalogo"><div class="wrap">
+  <div class="head"><h2>Nuestro catálogo</h2><div class="chips" id="chips" role="group" aria-label="Filtrar por categoría"></div></div>
+  <p id="catalogStatus" role="status">Cargando catálogo…</p>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section class="steps band" id="como"><div class="wrap">
+  <div class="step"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="27" fill="#c8264f"/><path d="M17 22h22l-3 16H20z" fill="#fff"/><path d="M22 22a6 6 0 0 1 12 0" stroke="#fff" stroke-width="3" fill="none"/></svg><h3>Elige</h3><p>Agrega productos a tu pedido y selecciona el tamaño si corresponde.</p></div>
+  <div class="step"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="27" fill="#4a2418"/><rect x="16" y="17" width="24" height="22" rx="4" fill="#fff"/><path d="M16 24h24" stroke="#4a2418" stroke-width="2"/><circle cx="23" cy="31" r="2" fill="#c8264f"/><circle cx="31" cy="31" r="2" fill="#4a2418"/></svg><h3>Programa</h3><p>Indica la fecha de entrega y si recoges en tienda o prefieres delivery.</p></div>
+  <div class="step"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="27" fill="#1f9d55"/><path d="M18 38l2-6a11 11 0 1 1 4 4z" fill="#fff"/></svg><h3>Envía</h3><p>Envía tu pedido por WhatsApp con el total calculado.</p></div>
+</div></section>
+</main>
+
+<footer class="band" id="contacto"><div class="wrap">
+  <div><h3 id="fName">Catálogo</h3><a class="owner" href="https://app.pagescms.org">Editar mi web</a></div>
+  <div><h3>Horario</h3><p id="fHours"></p></div>
+  <div><h3>WhatsApp</h3><p id="fPhone"></p></div>
+  <div><h3>Dirección</h3><p id="fAddr"></p></div>
+  <small><a href="https://youtube.com/@keizoraoficial">Hecho con la plantilla gratuita de Keizora</a></small>
+</div></footer>
+
+<div class="scrim" id="scrim"></div>
+
+<aside class="drawer" id="cart" aria-label="Tu pedido">
+  <div class="dh"><h2>Tu pedido</h2><button class="x" data-close aria-label="Cerrar">✕</button></div>
+  <div class="db" id="cartBody"></div>
+  <div class="df">
+    <div class="sub"><span>Productos</span><span id="sSub">S/ 0.00</span></div>
+    <div class="sub"><span>Delivery</span><span id="sDel">S/ 0.00</span></div>
+    <div class="tot"><span>Total</span><span id="sTot">S/ 0.00</span></div>
+    <a class="wa" id="waBtn" target="_blank" rel="noopener" aria-disabled="true"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>Enviar pedido por WhatsApp</a>
+    <p class="hint" id="waHint">Completa tu nombre y la fecha para enviar.</p>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="catalogo.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+media:
+  input: fotos
+  output: fotos
+  categories: [image]
+
+content:
+  - name: negocio
+    label: Mi negocio
+    type: file
+    path: data/negocio.json
+    format: json
+    fields:
+      - { name: nombre, label: Nombre, type: string }
+      - { name: eslogan, label: Eslogan, type: text }
+      - { name: logo, label: Logo, type: image }
+      - name: whatsapp
+        label: Número de WhatsApp
+        type: string
+        pattern:
+          regex: '^51[0-9]{9}$'
+          message: Escribe 51 seguido de nueve dígitos, sin espacios ni signo más.
+      - { name: direccion, label: Dirección, type: string }
+      - { name: horario, label: Horario, type: string }
+      - { name: costo_delivery, label: Costo de delivery (S/), type: number }
+      - { name: metodos_pago, label: Métodos de pago, type: string, list: true }
+      - name: colores
+        label: Colores
+        type: object
+        fields:
+          - { name: primario, label: Color primario (hexadecimal), type: string, pattern: '^#[0-9a-fA-F]{6}$' }
+          - { name: acento, label: Color de acento (hexadecimal), type: string, pattern: '^#[0-9a-fA-F]{6}$' }
+      - { name: portada, label: Foto de portada, type: image }
+      - { name: titulo_portada, label: Título de portada, type: string }
+
+  - name: productos
+    label: Productos
+    type: file
+    path: data/productos.json
+    format: json
+    list: true
+    fields:
+      - { name: nombre, label: Nombre, type: string }
+      - { name: categoria, label: Categoría, type: string }
+      - { name: descripcion, label: Descripción, type: text }
+      - { name: precio_desde, label: Precio desde (S/), type: number }
+      - name: tamanos
+        label: Tamaños
+        type: object
+        list: true
+        fields:
+          - { name: nombre, label: Nombre del tamaño, type: string }
+          - { name: precio, label: Precio (S/), type: number }
+      - { name: foto, label: Foto, type: image }
+      - { name: agotado, label: Agotado, type: boolean }
+      - { name: destacado, label: Destacado, type: boolean }

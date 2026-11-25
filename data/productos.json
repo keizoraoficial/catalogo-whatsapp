@@ -1,0 +1,200 @@
+[
+  {
+    "nombre": "Torta de chocolate",
+    "categoria": "Tortas",
+    "descripcion": "Bizcocho húmedo de cacao, ganache de chocolate semiamargo y fresas.",
+    "precio_desde": 45,
+    "tamanos": [
+      {
+        "nombre": "Chica",
+        "precio": 45
+      },
+      {
+        "nombre": "Mediana",
+        "precio": 65
+      },
+      {
+        "nombre": "Grande",
+        "precio": 95
+      }
+    ],
+    "foto": "fotos/torta-chocolate.jpg",
+    "agotado": false,
+    "destacado": false
+  },
+  {
+    "nombre": "Torta de frutos del bosque",
+    "categoria": "Tortas",
+    "descripcion": "Bizcocho de vainilla, crema chantilly, moras y flores comestibles.",
+    "precio_desde": 40,
+    "tamanos": [
+      {
+        "nombre": "Chica",
+        "precio": 40
+      },
+      {
+        "nombre": "Mediana",
+        "precio": 60
+      },
+      {
+        "nombre": "Grande",
+        "precio": 88
+      }
+    ],
+    "foto": "fotos/torta-tres-leches.jpg",
+    "agotado": false,
+    "destacado": false
+  },
+  {
+    "nombre": "Red velvet",
+    "categoria": "Tortas",
+    "descripcion": "Clásica red velvet con frosting de queso crema.",
+    "precio_desde": 70,
+    "tamanos": [
+      {
+        "nombre": "Mediana",
+        "precio": 70
+      },
+      {
+        "nombre": "Grande",
+        "precio": 105
+      }
+    ],
+    "foto": "fotos/red-velvet.jpg",
+    "agotado": false,
+    "destacado": false
+  },
+  {
+    "nombre": "Selva negra",
+    "categoria": "Tortas",
+    "descripcion": "Chocolate, crema chantilly y cerezas, con virutas de chocolate.",
+    "precio_desde": 68,
+    "tamanos": [
+      {
+        "nombre": "Mediana",
+        "precio": 68
+      },
+      {
+        "nombre": "Grande",
+        "precio": 99
+      }
+    ],
+    "foto": "fotos/selva-negra.jpg",
+    "agotado": false,
+    "destacado": false
+  },
+  {
+    "nombre": "Cheesecake de pistacho",
+    "categoria": "Postres",
+    "descripcion": "Base crocante, crema de queso suave y pistachos tostados.",
+    "precio_desde": 12,
+    "tamanos": [
+      {
+        "nombre": "Porción",
+        "precio": 12
+      },
+      {
+        "nombre": "Entero",
+        "precio": 70
+      }
+    ],
+    "foto": "fotos/cheesecake-maracuya.jpg",
+    "agotado": false,
+    "destacado": false
+  },
+  {
+    "nombre": "Pie de limón",
+    "categoria": "Postres",
+    "descripcion": "Masa sablée, crema de limón y merengue tostado.",
+    "precio_desde": 10,
+    "tamanos": [
+      {
+        "nombre": "Porción",
+        "precio": 10
+      },
+      {
+        "nombre": "Entero",
+        "precio": 55
+      }
+    ],
+    "foto": "fotos/pie-limon.jpg",
+    "agotado": true,
+    "destacado": false
+  },
+  {
+    "nombre": "Tiramisú en vaso",
+    "categoria": "Postres",
+    "descripcion": "Capas de bizcocho con café, crema de mascarpone y cacao.",
+    "precio_desde": 14,
+    "tamanos": [
+      {
+        "nombre": "Vaso",
+        "precio": 14
+      },
+      {
+        "nombre": "Pack x4",
+        "precio": 52
+      }
+    ],
+    "foto": "fotos/tiramisu.jpg",
+    "agotado": false,
+    "destacado": false
+  },
+  {
+    "nombre": "Cupcakes de vainilla",
+    "categoria": "Bocaditos",
+    "descripcion": "Con frosting de fresa y una fresa fresca encima.",
+    "precio_desde": 30,
+    "tamanos": [
+      {
+        "nombre": "Caja x6",
+        "precio": 30
+      },
+      {
+        "nombre": "Caja x12",
+        "precio": 56
+      }
+    ],
+    "foto": "fotos/cupcakes.jpg",
+    "agotado": false,
+    "destacado": false
+  },
+  {
+    "nombre": "Alfajores de chocolate",
+    "categoria": "Bocaditos",
+    "descripcion": "Galletas de cacao rellenas de manjar blanco artesanal.",
+    "precio_desde": 18,
+    "tamanos": [
+      {
+        "nombre": "Caja x12",
+        "precio": 18
+      },
+      {
+        "nombre": "Caja x24",
+        "precio": 34
+      }
+    ],
+    "foto": "fotos/alfajores.jpg",
+    "agotado": false,
+    "destacado": false
+  },
+  {
+    "nombre": "Macarons surtidos",
+    "categoria": "Bocaditos",
+    "descripcion": "Fresa, pistacho, chocolate y maracuyá.",
+    "precio_desde": 35,
+    "tamanos": [
+      {
+        "nombre": "Caja x10",
+        "precio": 35
+      },
+      {
+        "nombre": "Caja x20",
+        "precio": 66
+      }
+    ],
+    "foto": "fotos/macarons.jpg",
+    "agotado": false,
+    "destacado": false
+  }
+]

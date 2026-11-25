@@ -1,0 +1,21 @@
+{
+  "nombre": "Dulce María",
+  "eslogan": "Elige tus favoritos, personaliza el mensaje y recibe tu pedido en casa. Todo por WhatsApp, sin complicaciones.",
+  "logo": "",
+  "whatsapp": "51999999999",
+  "direccion": "Av. Brasil 1234, Magdalena del Mar",
+  "horario": "Lunes a sábado, 9:00 a. m. a 8:00 p. m.",
+  "costo_delivery": 10,
+  "metodos_pago": [
+    "Yape",
+    "Plin",
+    "Efectivo",
+    "Transferencia"
+  ],
+  "colores": {
+    "primario": "#4a2418",
+    "acento": ""
+  },
+  "portada": "fotos/portada.jpg",
+  "titulo_portada": "Tortas y postres hechos con amor, listos para tu celebración"
+}
